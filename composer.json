@@ -1,0 +1,31 @@
+{
+  "name": "jackabox/nova-duplicate-field",
+  "description": "A Laravel Nova field to duplicate records.",
+  "version": "0.2.7",
+  "keywords": [
+    "laravel",
+    "nova",
+    "duplicate"
+  ],
+  "license": "MIT",
+  "require": {
+    "php": ">=7.1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Jackabox\\DuplicateField\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Jackabox\\DuplicateField\\FieldServiceProvider"
+      ]
+    }
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
