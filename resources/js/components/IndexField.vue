@@ -36,7 +36,18 @@ export default {
           relations: this.field.relations ? this.field.relations : ""
         })
         .then(response => {
-          window.location.replace(response.data.destination);
+          // window.location.replace(response.data.destination);
+          this.$router.push('/', () => {
+            this.$router.go(-1)
+            this.$toasted.show(
+              'Campaign was successfully duplicated.',
+              { type: 'success' }
+            )
+            this.$toasted.show(
+              'The images might take a while.',
+              { type: 'success' }
+            )
+          })
         })
         .catch(error => {
           console.log(error);

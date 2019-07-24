@@ -24,7 +24,14 @@ class DuplicateController extends Controller
         }
 
         $newModel = $model->replicate();
+        $newModel->number = $model->max('number') + 1;
         $newModel->push();
+
+        $model->media->each(function($media) use ($model, $newModel){
+            dispatch(function () use ($model, $newModel, $media) {
+                $media->copy($newModel, $media->collection_name);
+            })->onConnection('database');
+        });
 
         if (isset($request->relations) && !empty($request->relations)) {
             // load the relations
