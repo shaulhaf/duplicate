@@ -945,10 +945,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         relations: this.field.relations ? this.field.relations : ""
       }).then(function (response) {
         // window.location.replace(response.data.destination);
-        _this.$router.push('/', function () {
-          _this.$router.go(-1);
-          _this.$toasted.show('Campaign was successfully duplicated.', { type: 'success' });
-          _this.$toasted.show('The images might take a while.', { type: 'success' });
+        _this.$router.push(response.data.destination);
+
+        _this.$toasted.show('Campaign was successfully duplicated.', { type: 'success' });
+        _this.$toasted.show('The Images might take a while to upload.', {
+          action: {
+            onClick: function onClick() {
+              return location.reload();
+            },
+            text: _this.__('Reload')
+          },
+          duration: null,
+          type: 'success'
         });
       }).catch(function (error) {
         console.log(error);

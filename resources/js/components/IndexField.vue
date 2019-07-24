@@ -37,16 +37,19 @@ export default {
         })
         .then(response => {
           // window.location.replace(response.data.destination);
-          this.$router.push('/', () => {
-            this.$router.go(-1)
-            this.$toasted.show(
-              'Campaign was successfully duplicated.',
-              { type: 'success' }
-            )
-            this.$toasted.show(
-              'The images might take a while.',
-              { type: 'success' }
-            )
+          this.$router.push(response.data.destination)
+
+          this.$toasted.show(
+            'Campaign was successfully duplicated.',
+            { type: 'success' }
+          )
+          this.$toasted.show('The Images might take a while to upload.', {
+              action: {
+                  onClick: () => location.reload(),
+                  text: this.__('Reload'),
+              },
+              duration: null,
+              type: 'success',
           })
         })
         .catch(error => {
