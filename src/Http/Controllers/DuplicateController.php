@@ -25,8 +25,12 @@ class DuplicateController extends Controller
 
         $newModel = $model->replicate();
         $newModel->number = $model->max('number') + 1;
-        unset($newModel->sent);
-        unset($newModel->campaign_id);
+        $newModel->sent = false;
+        $newModel->opens = null;
+        $newModel->clicks = null;
+        $newModel->schedule = null;
+        $newModel->toggle_schedule = false;
+        $newModel->campaign_id = null;
         $newModel->push();
 
         $model->media->each(function($media) use ($model, $newModel){
